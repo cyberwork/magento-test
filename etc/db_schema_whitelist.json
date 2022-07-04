@@ -1,0 +1,23 @@
+{
+  "catalog_product_price_change_requests": {
+    "column": {
+        "request_id": true,
+        "requested_user_id": true,
+        "approval_user_id": true, 
+        "product_id": true,
+        "product_sku": true,
+        "attributte": true,
+        "old_price": true,
+        "new_price": true,
+        "approved": true,
+        "requested_at": true,
+        "approved_at": true
+    },
+    "index": {
+      "CATALOG_PRODUCT_PRICE_CHANGE_REQUESTS_REQUEST_ID": true
+    },
+    "constraint": {
+      "PRIMARY": true
+    }
+  }
+}

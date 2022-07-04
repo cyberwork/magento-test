@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="catalog_product_price_change_requests" resource="default" engine="innodb"
+           comment="Requests for change product price">
+        <column xsi:type="int" name="request_id" unsigned="true" nullable="false" identity="true" comment="Request ID"/>
+        <column xsi:type="int" name="requested_user_id" unsigned="true" nullable="true" identity="false"
+                comment="Requested By User ID"/>
+        <column xsi:type="int" name="approval_user_id" unsigned="true" nullable="true" identity="false"
+                comment="Approval By User ID"/>
+        <column xsi:type="int" name="product_id" unsigned="true" nullable="false" identity="false"
+                comment="Product ID"/>
+        <column xsi:type="varchar" name="product_sku" nullable="false" comment="Product SKU"/>
+        <column xsi:type="varchar" name="attributte" nullable="true" default="price"
+                comment="Product Attribute Changed"/>
+        <column xsi:type="decimal" name="old_price" unsigned="false" nullable="false" precision="20" scale="6" comment="Old Price"/>
+        <column xsi:type="decimal" name="new_price" unsigned="false" nullable="false" precision="20" scale="6" comment="New Price"/>
+        <column xsi:type="boolean" name="approved" nullable="false" default="false" comment="Approved Status"/>
+        <column xsi:type="datetime" name="requested_at" nullable="true" on_update="true" comment="Requested At"/>
+        <column xsi:type="datetime" name="approved_at" nullable="true" on_update="true" comment="Approved At"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="request_id"/>
+        </constraint>
+        <index referenceId="CATALOG_PRODUCT_PRICE_CHANGE_REQUESTS_REQUEST_ID" indexType="btree">
+            <column name="request_id"/>
+        </index>
+    </table>
+</schema>

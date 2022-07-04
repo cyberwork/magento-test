@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">double_check_price.double_check_price_data_source</item>
+            <item name="deps" xsi:type="string">double_check_price.double_check_price_data_source</item>
+        </item>
+    </argument>
+    <settings>
+<!--        <buttons>-->
+<!--            <button name="add">-->
+<!--                <url path="*/*/new"/>-->
+<!--                <class>primary</class>-->
+<!--                <label translate="true">Add New</label>-->
+<!--            </button>-->
+<!--        </buttons>-->
+        <spinner>double_check_price_columns</spinner>
+        <deps>
+            <dep>double_check_price.double_check_price_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="double_check_price_data_source" component="Magento_Ui/js/grid/provider">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Adriano\Teste\Ui\DataProvider\ProductPriceChangeRequest\ListingDataProvider</argument>
+            <argument name="name" xsi:type="string">double_check_price_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">request_id</argument>
+            <argument name="requestFieldName" xsi:type="string">request_id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">request_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>Adriano_Teste::listing</aclResource>
+        <dataProvider class="Adriano\Teste\Ui\DataProvider\ProductPriceChangeRequest\ListingDataProvider"
+                      name="double_check_price_data_source">
+            <settings>
+                <requestFieldName>request_id</requestFieldName>
+                <primaryFieldName>request_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <massaction name="listing_massaction">
+            <argument name="data" xsi:type="array">
+                <item name="data" xsi:type="array">
+                    <item name="selectProvider" xsi:type="string">double_check_price_data_source</item>
+                    <item name="displayArea" xsi:type="string">bottom</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/tree-massactions</item>
+                    <item name="indexField" xsi:type="string">entity_id</item>
+                </item>
+            </argument>
+            <action name="aprovar">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">aprovar</item>
+                        <item name="label" xsi:type="string" translate="true">Aprovar</item>
+                        <item name="url" xsi:type="url" path="doublecheck/request/massApprove"/>
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Aprovar requisições</item>
+                            <item name="message" xsi:type="string" translate="true">Deseja realmente aprovar essas requisições?</item>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+            <action name="rejeitar">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">delete</item>
+                        <item name="label" xsi:type="string" translate="true">Rejeitar</item>
+                        <item name="url" xsi:type="url" path="doublecheck/request/massDelete"/>
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Rejeitar requisições</item>
+                            <item name="message" xsi:type="string" translate="true">Deseja realmente rejeitar essas requisições?</item>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+        </massaction>
+        <filterSearch name="fulltext"/>
+        <filters name="listing_filters">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="templates" xsi:type="array">
+                        <item name="filters" xsi:type="array">
+                            <item name="select" xsi:type="array">
+                                <item name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</item>
+                                <item name="template" xsi:type="string">ui/grid/filters/elements/ui-select</item>
+                            </item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </filters>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="double_check_price_columns">
+        <selectionsColumn name="ids" sortOrder="5">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">request_id</item>
+                    <item name="draggable" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </selectionsColumn>
+        <column name="request_id" sortOrder="10">
+            <settings>
+                <filter>text</filter>
+                <bodyTmpl>ui/grid/cells/text</bodyTmpl>
+                <label translate="true">ID</label>
+            </settings>
+        </column>
+        <column name="product_sku" sortOrder="15">
+            <settings>
+                <filter>text</filter>
+                <bodyTmpl>ui/grid/cells/text</bodyTmpl>
+                <label translate="true">SKU</label>
+            </settings>
+        </column>
+        <column name="requested_at" component="Magento_Ui/js/grid/columns/date" sortOrder="100">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Data</label>
+            </settings>
+        </column>
+        <column name="attributte" sortOrder="25">
+            <settings>
+                <filter>text</filter>
+                <bodyTmpl>ui/grid/cells/text</bodyTmpl>
+                <label translate="true">Atributo</label>
+            </settings>
+        </column>
+        <column name="old_price" class="Magento\Catalog\Ui\Component\Listing\Columns\Price" sortOrder="30">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="label" xsi:type="string" translate="true">Valor do produto</item>
+                </item>
+            </argument>
+        </column>
+        <column name="new_price" class="Magento\Catalog\Ui\Component\Listing\Columns\Price" sortOrder="35">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="label" xsi:type="string" translate="true">Valor sugerido</item>
+                </item>
+            </argument>
+        </column>
+            <actionsColumn name="actions" class="Adriano\Teste\Ui\Component\ProductPriceChangeRequest\Listing\Column\Actions" sortOrder="200">
+               <argument name="data" xsi:type="array">
+                  <item name="config" xsi:type="array">
+                      <item name="resizeEnabled" xsi:type="boolean">false</item>
+                      <item name="resizeDefaultWidth" xsi:type="string">107</item>
+                      <item name="indexField" xsi:type="string">request_id</item>
+                  </item>
+               </argument>
+               <argument name="viewUrl" xsi:type="string">doublecheck/request/approve</argument>
+            </actionsColumn>
+    </columns>
+</listing>

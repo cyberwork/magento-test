@@ -1,0 +1,17 @@
+<!--@subject {{trans "Novo pedido de alteração de preço em: %store_name" store_name=$store.getFrontendName()}} @-->
+
+<h3>Nova requisição de mudança de preço</h3>
+<table style="border:none">
+    <tr>
+        <td>{{trans "Nome:"}}</td><td>{{var product_name}}</td>
+    </tr>
+    <tr>
+        <td>{{trans "SKU:"}}</td><td>{{var product_sku}}</td>
+    </tr>
+    <tr>
+        <td>{{trans "Preço atual:"}}</td><td>{{var product_old_price}}</td>
+    </tr>
+    <tr>
+        <td>{{trans "Preço sugerido:"}}</td><td>{{var product_new_price}}</td>
+    </tr>
+</table>

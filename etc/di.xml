@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item xsi:type="string" name="double_check_price_data_source">ListingDataProvider</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="ListingDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="resourceModel" xsi:type="string">
+                Adriano\Teste\Model\ResourceModel\ProductPriceChangeRequest
+            </argument>
+            <argument name="mainTable" xsi:type="string">catalog_product_price_change_requests</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="adriano_teste_double_check_list" xsi:type="object">
+                    Adriano\Teste\Console\Command\DoubleCheckPriceList
+                </item>
+                <item name="adriano_teste_double_check_approve" xsi:type="object">
+                    Adriano\Teste\Console\Command\DoubleCheckPriceApprove
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>
